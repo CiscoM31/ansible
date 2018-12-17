@@ -161,9 +161,6 @@ from ansible.module_utils.ec2 import boto3_conn, ec2_argument_spec, get_aws_conn
 # CIDR regex
 CIDR_REGEX = re.compile(r'([a-fA-F0-9:.]+)/\d+')
 
-# CIDR regex
-CIDR_REGEX = re.compile(r'([a-fA-F0-9:.]+)/\d+')
-
 # VPC-supported IANA protocol numbers
 # http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
 PROTOCOL_NUMBERS = {'all': -1, 'icmp': 1, 'tcp': 6, 'udp': 17, }
