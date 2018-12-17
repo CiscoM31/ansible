@@ -4,6 +4,7 @@
 
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
+import re, socket
 
 
 ANSIBLE_METADATA = {'metadata_version': '1.1',
