@@ -2,7 +2,6 @@
 # Copyright: Ansible Project
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-import socket
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 import re, socket
@@ -164,7 +163,7 @@ from ansible.module_utils.ec2 import boto3_conn, ec2_argument_spec, get_aws_conn
 CIDR_REGEX = re.compile(r'([a-fA-F0-9:.]+)/\d+')
 
 # CIDR regex
-CIDR_REGEX = re.compile(r'(\w+)/\d+')
+CIDR_REGEX = re.compile(r'([a-fA-F0-9:.]+)/\d+')
 
 # VPC-supported IANA protocol numbers
 # http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml
