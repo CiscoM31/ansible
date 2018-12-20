@@ -4,7 +4,6 @@
 
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
-import re, socket
 
 
 ANSIBLE_METADATA = {'metadata_version': '1.1',
@@ -153,6 +152,8 @@ try:
 except ImportError:
     HAS_BOTO3 = False
 
+import re
+import socket
 import traceback
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.ec2 import boto3_conn, ec2_argument_spec, get_aws_connection_info
@@ -232,10 +233,8 @@ def nacls_changed(nacl, client, module):
     nacl_id = nacl['NetworkAcls'][0]['NetworkAclId']
     nacl = describe_network_acl(client, module)
     entries = nacl['NetworkAcls'][0]['Entries']
-    tmp_egress = [entry for entry in entries if entry['Egress'] is True and entry['RuleNumber'] < 32767]
-    tmp_ingress = [entry for entry in entries if entry['Egress'] is False]
-    egress = [rule for rule in tmp_egress if rule['RuleNumber'] < 32767]
-    ingress = [rule for rule in tmp_ingress if rule['RuleNumber'] < 32767]
+    egress = [rule for rule in entries if rule['Egress'] is True and rule['RuleNumber'] < 32767]
+    ingress = [rule for rule in entries if rule['Egress'] is False and rule['RuleNumber'] < 32767]
     if rules_changed(egress, params['egress'], True, nacl_id, client, module):
         changed = True
     if rules_changed(ingress, params['ingress'], False, nacl_id, client, module):
